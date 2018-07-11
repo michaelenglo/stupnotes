@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import LogItem from './LogItem.js';
 import LogInput from './LogInput.js';
+import { connect } from 'react-redux';
 
 
 const styles = {
@@ -45,7 +46,9 @@ class MainScreen extends Component {
     const dateFinish = new Date(1531296366853);
     return (
         <div>
-          <LogItem timeStart={dateNow} timeFinish={dateFinish}/>
+          {Object.values(this.props.logs).map(log => 
+            <LogItem label={log.label} timeStart={log.timeStart} timeFinish={log.timeFinish}/>
+          )}
           <div className={this.props.classes.verticalSpace20}/>
           <LogInput
             value={this.state.logInputValue}
@@ -58,5 +61,12 @@ class MainScreen extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  logs: state.logs,
+});
 
-export default withStyles(styles)(MainScreen);
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MainScreen));

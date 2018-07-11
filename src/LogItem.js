@@ -40,7 +40,7 @@ class LogItem extends Component {
 
     return (
       <Paper className={classes.container}>
-        <Typography className={classes.title} variant="title">work item</Typography>
+        <Typography className={classes.title} variant="title">{this.props.label}</Typography>
         <Typography className={classes.timeStart} variant="subheading">{momentStart.format('LTS')}</Typography>
         <Typography className={classes.timeFinish} variant="subheading">{momentFinish.format('LTS')}</Typography>
         <Typography className={classes.timeSpent} variant="subheading">({diffStr})</Typography>
