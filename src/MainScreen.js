@@ -11,8 +11,10 @@ const styles = {
 
 class MainScreen extends Component {
   render() {
+    const dateNow = new Date(1531296059620);
+    const dateFinish = new Date(1531296366853);
     return (
-        <LogItem />
+        <LogItem timeStart={dateNow} timeFinish={dateFinish}/>
     );
   }
 }
