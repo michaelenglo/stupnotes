@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import LogItem from './LogItem.js';
+import LogInput from './LogInput.js';
+
 
 const styles = {
-  container: {
-    width: '40%',
-    margin: '20px',
-  },
+  verticalSpace20: {
+    height: '20px',
+  }
 }
 
 class MainScreen extends Component {
@@ -14,7 +15,11 @@ class MainScreen extends Component {
     const dateNow = new Date(1531296059620);
     const dateFinish = new Date(1531296366853);
     return (
-        <LogItem timeStart={dateNow} timeFinish={dateFinish}/>
+        <div>
+          <LogItem timeStart={dateNow} timeFinish={dateFinish}/>
+          <div className={this.props.classes.verticalSpace20}/>
+          <LogInput timeStart={dateNow} timeFinish={dateFinish} />
+        </div>
     );
   }
 }
