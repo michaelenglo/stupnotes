@@ -38,16 +38,15 @@ class MainScreen extends Component {
   }
 
   handleLogInputSubmit() {
-    console.log(new Date());
+    this.props.addLog(this.state.logInputValue, this.state.oldTime, new Date());
+    this.setState({ logInputValue: '' });
   }
 
   render() {
-    const dateNow = new Date(1531296059620);
-    const dateFinish = new Date(1531296366853);
     return (
         <div>
           {Object.values(this.props.logs).map(log => 
-            <LogItem label={log.label} timeStart={log.timeStart} timeFinish={log.timeFinish}/>
+            <LogItem key={log.timeFinish} label={log.label} timeStart={log.timeStart} timeFinish={log.timeFinish}/>
           )}
           <div className={this.props.classes.verticalSpace20}/>
           <LogInput
@@ -66,7 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  addLog: (label, timeStart, timeFinish) => dispatch({ type: 'ADD_LOG', label, timeStart, timeFinish }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MainScreen));
