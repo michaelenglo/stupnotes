@@ -8,7 +8,7 @@ import moment from 'moment';
 const styles = {
   container: {
     width: '800px',
-    margin: '20px',
+    margin: '20px 0',
     padding: '20px',
     display: 'flex',
   },
