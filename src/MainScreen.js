@@ -15,12 +15,21 @@ class MainScreen extends Component {
   constructor(props) {
     super(props);
 
+    const dateNow = new Date();
+
     this.state = {
       logInputValue: '',
+      oldTime: dateNow,
     };
 
     this.handleLogInputChange = this.handleLogInputChange.bind(this);
     this.handleLogInputSubmit = this.handleLogInputSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.forceUpdate();
+    }, 1000);
   }
 
   handleLogInputChange(logInputValue) {
@@ -28,7 +37,7 @@ class MainScreen extends Component {
   }
 
   handleLogInputSubmit() {
-    alert(this.state.logInputValue);
+    console.log(new Date());
   }
 
   render() {
@@ -42,8 +51,8 @@ class MainScreen extends Component {
             value={this.state.logInputValue}
             onChange={this.handleLogInputChange}
             onSubmit={this.handleLogInputSubmit}
-            timeStart={dateNow}
-            timeFinish={dateFinish}
+            timeStart={this.state.oldTime}
+            timeFinish={new Date()}
           />
         </div>
     );

@@ -36,7 +36,8 @@ class LogItem extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+      e.preventDefault();
       this.props.onSubmit();
   }
 
