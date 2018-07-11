@@ -11,6 +11,26 @@ const styles = {
 }
 
 class MainScreen extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      logInputValue: '',
+    };
+
+    this.handleLogInputChange = this.handleLogInputChange.bind(this);
+    this.handleLogInputSubmit = this.handleLogInputSubmit.bind(this);
+  }
+
+  handleLogInputChange(logInputValue) {
+    this.setState({ logInputValue });
+  }
+
+  handleLogInputSubmit() {
+    alert(this.state.logInputValue);
+  }
+
   render() {
     const dateNow = new Date(1531296059620);
     const dateFinish = new Date(1531296366853);
@@ -18,7 +38,13 @@ class MainScreen extends Component {
         <div>
           <LogItem timeStart={dateNow} timeFinish={dateFinish}/>
           <div className={this.props.classes.verticalSpace20}/>
-          <LogInput timeStart={dateNow} timeFinish={dateFinish} />
+          <LogInput
+            value={this.state.logInputValue}
+            onChange={this.handleLogInputChange}
+            onSubmit={this.handleLogInputSubmit}
+            timeStart={dateNow}
+            timeFinish={dateFinish}
+          />
         </div>
     );
   }

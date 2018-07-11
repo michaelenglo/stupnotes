@@ -29,28 +29,45 @@ const styles = {
 }
 
 class LogItem extends Component {
+
+  constructor(props) {
+      super(props);
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+      this.props.onSubmit();
+  }
+
   render() {
     const { classes } = this.props;
     const momentStart = moment(this.props.timeStart);
     const momentFinish = moment(this.props.timeFinish);
 
     return (
-      <Paper className={classes.container}>
-        <div className={classes.title}>
-          <TextField 
-            autoFocus
-            placeholder="Enter Workitem here..."
-            fullWidth
-          />
-        </div>
-        <Typography className={classes.timeStart} variant="subheading">{momentStart.format('LTS')}</Typography>
-        <Typography className={classes.timeFinish} variant="subheading">{momentFinish.format('LTS')}</Typography>
-        <div className={classes.add}>
-          <Button variant="contained" color="primary">
-              ADD
-          </Button>
-        </div>
-      </Paper>
+      <form onSubmit={this.handleSubmit}>
+        <Paper className={classes.container}>
+          <div className={classes.title}>
+            <TextField 
+              autoFocus
+              placeholder="Enter Workitem here..."
+              fullWidth
+              value={this.props.value}
+              onChange={ e => {
+                  this.props.onChange(e.target.value);
+              }}
+            />
+          </div>
+          <Typography className={classes.timeStart} variant="subheading">{momentStart.format('LTS')}</Typography>
+          <Typography className={classes.timeFinish} variant="subheading">{momentFinish.format('LTS')}</Typography>
+          <div className={classes.add}>
+            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+                ADD
+            </Button>
+          </div>
+        </Paper>
+      </form>
     );
   }
 }
